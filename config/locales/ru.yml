@@ -1,0 +1,11 @@
+ru:
+  button_add_subissue: 'Добавить подзадачу'
+  field_subissue_parent_id: 'Родительская задача'
+  text_issues_hierarchy: 'Иерархия задач'
+
+  field_spent_hours_with_children: 'Общие затраты'
+  field_estimated_hours_with_children: 'Общая оценка'
+
+  field_is_root: 'Корневая задача?'
+  field_is_root_true: 'Да'
+  field_is_root_false: 'Нет'

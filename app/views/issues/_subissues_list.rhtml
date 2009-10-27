@@ -1,0 +1,57 @@
+<% if (hierarchy = issues_hierarchy(@issue)).size > 1 %>
+  <hr />
+  <p><strong><%=l(:text_issues_hierarchy)%></strong></p>
+  <div>
+    <% form_tag({}) do %>
+    	<table class="list issues issues-hierarchy">
+    		<thead>
+    		<tr>
+          <th><%= link_to image_tag('toggle_check.png'), {}, :onclick => 'toggleIssuesSelection(Element.up(this, "form")); return false;', :title => "#{l(:button_check_all)}/#{l(:button_uncheck_all)}" %>
+          </th>
+      		<th>&nbsp;#&nbsp;</th>
+      		<th><%= l(:field_tracker) %></th>
+      		<th><%= l(:field_assigned_to) %></th>
+      		<th><%= l(:field_subject) %></th>
+      		<th><%= l(:field_status) %></th>
+      		<th><%= l(:field_done_ratio) %></th>
+      		<th><%= l(:field_spent_hours_with_children) %></th>
+      		<th><%= l(:field_estimated_hours_with_children) %></th>
+    		</tr>
+    		</thead>
+    		<tbody>	
+    		<% hierarchy.each do |issue| %>
+    		<tr id="issue-<%= issue.id %>" class="hascontextmenu <%= cycle('odd', 'even') %> <%= issue.css_classes %> issue-hierarchy-<%= issue.hierarchy_level %><% if issue.parent %> issue-hierarchy-subissue<% end %><% if issue == @issue %> issue-hierarchy-current<% end %>">
+    	    <td class="checkbox"><%= check_box_tag("ids[]", issue.id, false, :id => nil) %></td>
+    			<td class="id">
+    				<%= link_to issue.id, :controller => 'issues', :action => 'show', :id => issue %>
+    			</td>
+          <td class="tracker">
+            <%=h issue.tracker %>
+          </td>
+          <td class="assigned_to">
+            <%= link_to h(issue.assigned_to), :controller => 'account', :action => 'show', :id => issue.assigned_to %>
+          </td>
+    			<td class="subject">
+           <%= link_to h(truncate(issue.subject, :length => 60)), :controller => 'issues', :action => 'show', :id => issue %>
+          </td>
+          <td class="status"><%=h issue.status %></td>
+          <td class="done_ratio"><%= progress_bar(issue.done_ratio, :width => '80px') %></td>
+          <td><%=h issue.spent_hours_with_despedants > 0 ? '%.2f' % issue.spent_hours_with_despedants : '-' %></td>
+          <td><%=h issue.estimated_hours_with_despedants ? '%.2f' % issue.estimated_hours_with_despedants : '-' %></td>
+    		</tr>
+    		<% end %>
+    		</tbody>
+    	</table>
+    <% end %>
+  </div>
+
+  <% content_for :header_tags do %>
+      <%= javascript_include_tag 'context_menu' %>
+      <%= stylesheet_link_tag 'context_menu' %>
+      <%= stylesheet_link_tag 'subissues', :plugin => 'redmine_subissues' %>
+  <% end %>
+
+  <div id="context-menu" style="display: none;"></div>
+  <%= javascript_tag "new ContextMenu('#{url_for(:controller => 'issues', :action => 'context_menu')}')" %>
+
+<% end %>

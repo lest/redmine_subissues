@@ -1,0 +1,34 @@
+.issue-hierarchy-current .id, .issue-hierarchy-current .subject {
+  font-weight: bold;
+}
+
+.issue-hierarchy-subissue .subject a {
+  background-image: url(../images/corner-dots.gif);
+  background-position: -5px center;
+  background-repeat: no-repeat;
+  padding-left: 12px;
+}
+
+.issue-hierarchy-2 .subject {
+  padding-left: 12px;
+}
+
+.issue-hierarchy-3 .subject {
+  padding-left: 24px;
+}
+
+.issue-hierarchy-4 .subject {
+  padding-left: 36px;
+}
+
+.issue-hierarchy-5 .subject {
+  padding-left: 48px;
+}
+
+.issue-hierarchy-6 .subject {
+  padding-left: 60px;
+}
+
+.issue-hierarchy-7 .subject {
+  padding-left: 72px;
+}

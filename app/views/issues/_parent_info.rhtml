@@ -1,0 +1,7 @@
+<% if @issue.parent %>
+  <% if @issue.errors[:parent_id] %>
+    <%=h @issue.errors[:parent_id] %>
+  <% else %>
+    <%=h @issue.parent.tracker %>: <%=h @issue.parent.subject %>
+  <% end %>
+<% end %>

@@ -1,0 +1,11 @@
+en:
+  button_add_subissue: 'Add subissue'
+  field_subissue_parent_id: 'Parent issue'
+  text_issues_hierarchy: 'Issues hierarchy'
+
+  field_spent_hours_with_children: 'Total spent'
+  field_estimated_hours_with_children: 'Total estimate'
+
+  field_is_root: 'Root issue?'
+  field_is_root_true: 'Yes'
+  field_is_root_false: 'No'
